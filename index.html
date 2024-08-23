@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SASI XX</title>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: url('https://assets.onecompiler.app/42pw3bqaa/42pw38w6x/77c02a59137c6eadf10444cac007b7bf40c4193c_high.webp') no-repeat center center fixed;
+            background-size: cover;
+            color: #f0f0f0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .title {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            display: flex;
+        }
+
+        .title span {
+            transition: color 0.3s;
+        }
+
+        /* Buttons */
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .buttons a {
+            text-decoration: none;
+        }
+
+        .buttons button {
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: black;
+            color: white;
+            cursor: pointer;
+            width: 200px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Comment Box Styles */
+        .comment-box {
+            width: 100%;
+            max-width: 500px;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .comment-box label {
+            font-size: 18px;
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+
+        .comment-box input[type="text"],
+        .comment-box textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid black;
+            border-radius: 25px;
+            outline: none;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .comment-box textarea {
+            height: 100px;
+            resize: none;
+        }
+
+        .comment-box button {
+            font-size: 18px;
+            font-weight: bold;
+            color: black;
+            background-color: #00ff00;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .comment-box button:hover {
+            background-color: #00cc00;
+        }
+
+        /* Theme Switcher Styles */
+        .theme-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .theme-switcher img {
+            width: 24px;
+            height: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-switcher" onclick="toggleTheme()">
+        <img id="theme-icon" src="https://example.com/sun-icon.png" alt="Theme Switch Icon"> <!-- Replace with actual sun/moon icon URLs -->
+    </div>
+    <div class="title">
+        <span>S</span><span>A</span><span>S</span><span>I</span><span> </span><span>X</span><span>X</span>
+    </div>
+    <div class="buttons">
+        <button class="color-changing" onclick="window.open('https://file.io/CObtF4DegXVk', '_blank')">DOWNLOAD FILE</button>
+        <button class="color-changing" onclick="window.open('https://replit.com/@Themiyadilan/Dila-Md-pair-code', '_blank')">PAIRING CODE</button>
+        <a href="https://discord.com/" target="_blank">
+            <button class="color-changing">CREATE DISCORD ACC</button>
+        </a>
+        <button class="color-changing" onclick="window.open('https://bot-hosting.net/', '_blank')">HOSTING BOT</button>
+    </div>
+
+    <!-- Comment Box -->
+    <div class="comment-box">
+        <label for="name">Your name</label>
+        <input type="text" id="name" placeholder="Your name" class="color-changing">
+
+        <label for="whatsapp">Whatsapp number</label>
+        <input type="text" id="whatsapp" placeholder="Whatsapp number" class="color-changing">
+
+        <label for="comment">Comment</label>
+        <textarea id="comment" placeholder="Comment" class="color-changing"></textarea>
+
+        <button onclick="sendComment()">COMMENT</button>
+    </div>
+
+    <script>
+        // Colors array for letters and text
+        const letterColors = ['red', 'orange', 'yellow', 'green', 'blue'];
+        let colorIndex = 0;
+
+        function cycleLetterColors() {
+            const letters = document.querySelectorAll('.title span');
+
+            letters.forEach((letter, index) => {
+                letter.style.color = letterColors[(colorIndex + index) % letterColors.length];
+            });
+
+            colorIndex = (colorIndex + 1) % letterColors.length;
+        }
+
+        setInterval(cycleLetterColors, 1000);
+
+        function cycleTextColors() {
+            const elements = document.querySelectorAll('.color-changing');
+
+            elements.forEach(element => {
+                element.style.color = letterColors[colorIndex];
+            });
+
+            colorIndex = (colorIndex + 1) % letterColors.length;
+        }
+
+        setInterval(cycleTextColors, 1000);
+
+        // Toggle Theme Function
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.getElementById('theme-icon');
+            const commentSection = document.querySelector('.comment-section');
+            const commentInput = document.querySelector('.comment-section input[type="text"]');
+            const commentButton = document.querySelector('.comment-section button');
+
+            body.classList.toggle('dark-mode');
+            commentSection.classList.toggle('dark-mode');
+            commentInput.classList.toggle('dark-mode');
+            commentButton.classList.toggle('dark-mode');
+
+            if (body.classList.contains('dark-mode')) {
+                icon.src = 'https://example.com/moon-icon.png'; // Replace with actual moon icon URL
+            } else {
+                icon.src = 'https://example.com/sun-icon.png'; // Replace with actual sun icon URL
+            }
+        }
+
+        // Send Comment Function
+        function sendComment() {
+            const name = document.getElementById('name').value;
+            const whatsapp = document.getElementById('whatsapp').value;
+            const comment = document.getElementById('comment').value;
+
+            if (name && whatsapp && comment) {
+                const chatId = '6793999316';
+                const botToken = '7221360899:AAEEECVyK7XLb9S8DVkpSzxUNojIGfSIjSM';
+                const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+                const data = {
+                    chat_id: chatId,
+                    text: `New Comment:\nName: ${name}\nWhatsapp: ${whatsapp}\nComment: ${comment}`
+                };
+
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.ok) {
+                        alert('Comment sent successfully!');
+                        document.getElementById('name').value = ''; 
+                        document.getElementById('whatsapp').value = ''; 
+                        document.getElementById('comment').value = ''; 
+                    } else {
+                        alert('Error sending comment.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to send comment.');
+                });
+            } else {
+                alert('Please fill in all fields.');
+            }
+        }
+    </script>
+</body>
+</html>
